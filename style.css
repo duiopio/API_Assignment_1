@@ -1,0 +1,12 @@
+*, ::after, ::before {
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+h2 {
+  font-size: 18px;
+}
+
+.post-container {
+  margin: 12px 16px;
+}
