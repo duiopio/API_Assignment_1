@@ -4,8 +4,37 @@
 }
 
 body {
+  overflow: hidden;
+  min-height: 100vh;
+  display: flex;
   background-color: rgb(245, 245, 245);
 }
+
+.sidebar {
+  min-width: 300px;
+  max-width: 300px;
+  background-color: lightgray;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+}
+
+.content {
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  width: 70%;
+  padding: 24px;
+  background-color: white;
+
+}
+
+.content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
 
 h2 {
   font-size: 18px;
@@ -26,24 +55,8 @@ h2 {
   bottom: 0px;
 }
 
-#sidebar {
-  width: 30%;
-  background-color: rgb(245, 245, 245);
-  overflow-x: hidden;
-  overflow-y: scroll;
-  top: 0px;
-  bottom: 0px;
-}
 
-#content-view {
-  position: fixed;
-  right: 0px;
-  top: 0px;
-  bottom: 0px;
-  width: 70%;
-  padding: 24px;
-  background-color: white;
-}
+
 
 #content-view > h2 {
   font-size: 42px;
@@ -83,4 +96,14 @@ h2 {
 
 .comment-email { 
   background-color: wheat;
+}
+
+@media only screen and (max-width: 992px) {
+  body {
+    flex-direction: column-reverse;
+  }
+
+  .sidebar {
+    height: 150px;
+  }
 }

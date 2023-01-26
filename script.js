@@ -1,5 +1,6 @@
 const sidebar = document.querySelector("#sidebar");
 const contentView = document.querySelector("#content-view");
+let showingComments = false;
 
 function getData() {
   fetch("https://jsonplaceholder.typicode.com/posts")
@@ -14,6 +15,7 @@ function displayData(posts) {
   for (const post of posts) {
     const postContainer = document.createElement("div");
     postContainer.addEventListener("pointerdown", (event) => {
+      showingComments = !showComments;
       updateContentView(post.title, post.body);
     });
 
