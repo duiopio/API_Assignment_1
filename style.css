@@ -63,6 +63,12 @@ h2 {
   margin-bottom: 16px;
 }
 
+.comments {
+  overflow-y: auto;
+  overflow-x: hidden;
+  bottom: 0px;
+}
+
 .comment-container {
   background-color: aliceblue;
 }

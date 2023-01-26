@@ -40,7 +40,6 @@ setup();
 
 function updateContentView(title, body) {
   contentView.innerHTML = "";
-
   const contentTitle = document.createElement("h2");
   const contentBody = document.createElement("p");
   const loadCommentsButton = document.createElement("button");
@@ -59,8 +58,6 @@ function updateContentView(title, body) {
   contentView.appendChild(contentTitle);
   contentView.appendChild(contentBody);
   contentView.appendChild(loadCommentsButton);
-
-
 }
 
 function getComments(content) {
@@ -72,12 +69,16 @@ function getComments(content) {
 }
 
 function showComments(comments, content) {
+  const commentsWrap = document.createElement("div");
+  commentsWrap.classList.add("comments");
+
   for (const comment of comments) {
     const commentContainer = document.createElement("div");
     const commentTitle = document.createElement("h3");
     const commentBody = document.createElement("p");
     const commentEmail = document.createElement("p");
 
+    
     commentContainer.classList.add("comment-container");
     commentTitle.classList.add("comment-title");
     commentBody.classList.add("comment-body");
@@ -91,6 +92,8 @@ function showComments(comments, content) {
     commentContainer.appendChild(commentEmail);
     commentContainer.appendChild(commentBody);
 
-    content.appendChild(commentContainer);
+    commentsWrap.appendChild(commentContainer);
   }
+
+  content.appendChild(commentsWrap);
 }
