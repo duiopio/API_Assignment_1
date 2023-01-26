@@ -13,11 +13,9 @@ function getData() {
 function displayData(posts) {
   for (const post of posts) {
     const postContainer = document.createElement("div");
-    
-
     postContainer.addEventListener("pointerdown", (event) => {
       updateContentView(post.title, post.body);
-  });
+    });
 
     const postTitle = document.createElement("h2");
     const postBody = document.createElement("p");
@@ -45,10 +43,54 @@ function updateContentView(title, body) {
 
   const contentTitle = document.createElement("h2");
   const contentBody = document.createElement("p");
+  const loadCommentsButton = document.createElement("button");
+
+  loadCommentsButton.textContent = "Show comments";
+  loadCommentsButton.addEventListener("pointerdown", () => {
+    getComments(contentView);
+  });
+
+  contentTitle.classList.add("content-title");
+  contentBody.classList.add("content-body");
 
   contentTitle.textContent = title;
   contentBody.textContent = body;
 
   contentView.appendChild(contentTitle);
   contentView.appendChild(contentBody);
+  contentView.appendChild(loadCommentsButton);
+
+
+}
+
+function getComments(content) {
+  fetch("https://jsonplaceholder.typicode.com/comments")
+  .then((response) => response.json())
+  .then((data) => {
+    showComments(data, content);
+  });
+}
+
+function showComments(comments, content) {
+  for (const comment of comments) {
+    const commentContainer = document.createElement("div");
+    const commentTitle = document.createElement("h3");
+    const commentBody = document.createElement("p");
+    const commentEmail = document.createElement("p");
+
+    commentContainer.classList.add("comment-container");
+    commentTitle.classList.add("comment-title");
+    commentBody.classList.add("comment-body");
+    commentEmail.classList.add("comment-email");
+
+    commentTitle.textContent = comment.title;
+    commentBody.textContent = comment.body;
+    commentEmail.textContent = comment.email;
+
+    commentContainer.appendChild(commentTitle);
+    commentContainer.appendChild(commentEmail);
+    commentContainer.appendChild(commentBody);
+
+    content.appendChild(commentContainer);
+  }
 }
