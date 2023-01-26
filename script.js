@@ -2,7 +2,7 @@ const sidebar = document.querySelector("#sidebar");
 const contentView = document.querySelector("#content-view");
 
 function getData() {
-  fetch("data.json")
+  fetch("https://jsonplaceholder.typicode.com/posts")
   .then((response) => response.json())
   .then((data) => {
     console.log(data);
@@ -13,13 +13,10 @@ function getData() {
 function displayData(posts) {
   for (const post of posts) {
     const postContainer = document.createElement("div");
+    
 
-    postContainer.addEventListener("click", () => {
-      console.log("Click");
-      contentView.innerHTML = `
-          <h2>${post.title}</h2>
-          <p>${post.body}</p>
-      `
+    postContainer.addEventListener("pointerdown", (event) => {
+      updateContentView(post.title, post.body);
   });
 
     const postTitle = document.createElement("h2");
@@ -43,18 +40,15 @@ function  setup() {
 
 setup();
 
+function updateContentView(title, body) {
+  contentView.innerHTML = "";
 
+  const contentTitle = document.createElement("h2");
+  const contentBody = document.createElement("p");
 
+  contentTitle.textContent = title;
+  contentBody.textContent = body;
 
-postContainer.addEventListener("pointerdown", function(event) {
-  const detailContainer = document.createElement("div");
-  const detailTitle = document.createElement("h2");
-  const detailBody = document.createElement("p");
-
-  detailTitle = post.title;
-  detailBody = post.body;
-
-  detailContainer.appendChild(detailTitle);
-  detailContainer.appendChild(detailBody);
-  contentView.appendChild(detailContainer);
-});
+  contentView.appendChild(contentTitle);
+  contentView.appendChild(contentBody);
+}
